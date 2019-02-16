@@ -1,0 +1,25 @@
+[lib]
+proc-macro = true
+
+[package]
+name = "byte-strings-proc-macro"
+version = "0.1.0"
+authors = ["Daniel Henry-Mantilla <daniel.henry.mantilla@gmail.com>"]
+edition = "2018"
+
+description = "::byte-strings proc-macro utils"
+
+documentation = "https://docs.rs/byte_strings/"
+homepage = "https://github.com/danielhenrymantilla/byte-strings-rs"
+repository = "https://github.com/danielhenrymantilla/byte-strings-rs"
+
+license-file = "../LICENSE"
+
+[dependencies]
+cfg-if = "0.1.6"
+quote = "0.6.11"
+syn = { version = "0.15" }
+
+[features]
+default = []
+proc-macro-hygiene = []

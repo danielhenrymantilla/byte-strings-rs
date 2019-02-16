@@ -1,0 +1,23 @@
+[package]
+name = "byte-strings"
+version = "0.1.0"
+authors = ["Daniel Henry-Mantilla <daniel.henry.mantilla@gmail.com>"]
+edition = "2018"
+
+description = "Rust byte strings manipulation, for a better and safer C FFI"
+
+documentation = "https://docs.rs/byte_strings/"
+homepage = "https://github.com/danielhenrymantilla/byte-strings-rs"
+repository = "https://github.com/danielhenrymantilla/byte-strings-rs"
+
+[dependencies]
+byte-strings-proc-macro = "0.1.0"
+cfg-if = "0.1.6"
+
+[features]
+default = []
+proc-macro-hygiene = ["byte-strings-proc-macro/proc-macro-hygiene"]
+nightly = []
+
+[package.metadata.docs.rs]
+features = [ "nightly" ]
