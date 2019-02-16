@@ -46,6 +46,7 @@ fn main_no_c_str_macro ()
 }
 
 #[test]
+#[should_panic]
 fn main_no_c_str_macro_2 ()
 {
     use ::std::ffi::CStr;
