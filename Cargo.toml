@@ -10,6 +10,8 @@ documentation = "https://docs.rs/byte_strings/"
 homepage = "https://github.com/danielhenrymantilla/byte-strings-rs"
 repository = "https://github.com/danielhenrymantilla/byte-strings-rs"
 
+license = "MIT"
+
 [dependencies]
 byte-strings-proc-macro = "0.1.0"
 cfg-if = "0.1.6"

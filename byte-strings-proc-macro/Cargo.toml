@@ -13,7 +13,7 @@ documentation = "https://docs.rs/byte_strings/"
 homepage = "https://github.com/danielhenrymantilla/byte-strings-rs"
 repository = "https://github.com/danielhenrymantilla/byte-strings-rs"
 
-license-file = "../LICENSE"
+license = "MIT"
 
 [dependencies]
 cfg-if = "0.1.6"
