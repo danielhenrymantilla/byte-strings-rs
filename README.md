@@ -48,5 +48,5 @@ fn main ()
 ```
 
 [Repository]: https://github.com/danielhenrymantilla/byte-strings-rs
-[Documentation]: https://docs.rs/byte_strings/0.1.0/
+[Documentation]: https://docs.rs/byte_strings
 [crates.io]: https://crates.io/crates/byte-strings

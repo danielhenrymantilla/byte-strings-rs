@@ -1,6 +1,6 @@
 [package]
 name = "byte-strings"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Daniel Henry-Mantilla <daniel.henry.mantilla@gmail.com>"]
 edition = "2018"
 
@@ -25,6 +25,8 @@ cfg-if = "0.1.6"
 
 [features]
 default = []
+
+nightly = []
 proc-macro-hygiene = ["byte-strings-proc-macro/proc-macro-hygiene"]
 
 [package.metadata.docs.rs]
