@@ -4,7 +4,7 @@ Rust zero-cost byte strings manipulation, for a better and safer FFI
 
 [![Repository](https://img.shields.io/badge/repository-GitHub-brightgreen.svg)][Repository]
 [![Latest version](https://img.shields.io/crates/v/byte-strings.svg)][crates.io]
-[![Documentation](https://docs.rs/byte_strings/badge.svg)][Documentation]
+[![Documentation](https://docs.rs/byte-strings/badge.svg)][Documentation]
 [![License](https://img.shields.io/crates/l/byte-strings.svg)](https://github.com/danielhenrymantilla/byte-strings-rs#license)
 
 ## Example
@@ -48,5 +48,5 @@ fn main ()
 ```
 
 [Repository]: https://github.com/danielhenrymantilla/byte-strings-rs
-[Documentation]: https://docs.rs/byte_strings
+[Documentation]: https://docs.rs/byte-strings
 [crates.io]: https://crates.io/crates/byte-strings
