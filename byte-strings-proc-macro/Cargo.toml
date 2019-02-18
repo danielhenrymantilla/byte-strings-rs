@@ -3,11 +3,11 @@ proc-macro = true
 
 [package]
 name = "byte-strings-proc-macro"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Daniel Henry-Mantilla <daniel.henry.mantilla@gmail.com>"]
 edition = "2018"
 
-description = "::byte-strings proc-macro utils"
+description = "https://crates.io/crates/byte-strings backing proc-macros"
 
 documentation = "https://docs.rs/byte_strings/"
 homepage = "https://github.com/danielhenrymantilla/byte-strings-rs"
