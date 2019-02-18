@@ -1,6 +1,6 @@
 [package]
 name = "byte-strings"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Daniel Henry-Mantilla <daniel.henry.mantilla@gmail.com>"]
 edition = "2018"
 
@@ -12,14 +12,20 @@ repository = "https://github.com/danielhenrymantilla/byte-strings-rs"
 
 license = "MIT"
 
+readme = "README.md"
+
+
+keywords = ["ffi", "c", "string", "char", "c_str"]
+
+categories = ["api-bindings", "rust-patterns", ]
+
 [dependencies]
-byte-strings-proc-macro = "0.1.0"
+byte-strings-proc-macro = "0.1.1"
 cfg-if = "0.1.6"
 
 [features]
 default = []
 proc-macro-hygiene = ["byte-strings-proc-macro/proc-macro-hygiene"]
-nightly = []
 
 [package.metadata.docs.rs]
 features = [ "nightly" ]

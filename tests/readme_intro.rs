@@ -1,28 +1,42 @@
-mod puts {
+/// Some lib
+mod safe {
     use ::std::{
         ffi::CStr,
         os::raw::{c_char, c_int},
     };
 
-    /// C FFI
-    extern "C" { fn puts (message: *const c_char) -> c_int; }
+    /// private unsafe C FFI
+    mod ffi { use super::*; pub unsafe extern "C"
+        fn puts (_: *const c_char) -> c_int { 0 }
+    }
 
-    /// Safe wrapper around C FFI
-    pub fn safe (message: &'_ CStr) -> i32
+    /// lib API: safe Rust wrapper => uses `CStr`
+    pub fn puts (message: &'_ CStr) -> i32
     {
         unsafe {
-            puts(message.as_ptr()) as i32
+            ffi::puts(message.as_ptr()) as i32
         }
     }
 }
-use self::puts::safe as safe_puts;
+
+fn main ()
+{
+    use ::byte_strings::c_str;
+
+    dbg!(safe::puts(
+        c_str!(
+            "Hello, ",
+            "World!",
+        ) // No runtime error, no runtime cost
+    ));
+}
 
 #[test]
 fn main_simple_and_safe ()
 {
     use ::byte_strings::c_str;
 
-    safe_puts(
+    safe::puts(
         c_str!(
             "Hello, ",
             "World!",
@@ -35,7 +49,7 @@ fn main_no_c_str_macro ()
 {
     use ::std::ffi::CString;
 
-    safe_puts(
+    safe::puts(
         &CString::new( // runtime cost  (+ slightly error prone if inner null)
             concat!(
                 "Hello, ",
@@ -51,7 +65,7 @@ fn main_no_c_str_macro_2 ()
 {
     use ::std::ffi::CStr;
 
-    safe_puts(
+    safe::puts(
         CStr::from_bytes_with_nul( // error prone! (inner null or no null)
             concat!(
                 "Hello, ",
@@ -67,7 +81,7 @@ fn main_no_c_str_macro_bad_copy_paste ()
 {
     use ::std::ffi::CStr;
 
-    safe_puts(
+    safe::puts(
         CStr::from_bytes_with_nul( // error prone! (inner null or no null)
             concat!(
                 "Hello,\0",

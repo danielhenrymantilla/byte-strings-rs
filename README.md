@@ -1,6 +1,6 @@
 # byte-strings-rs
 
-Rust byte strings manipulation, for a better and safer C FFI
+Rust zero-cost byte strings manipulation, for a better and safer FFI
 
 [![Repository](https://img.shields.io/badge/repository-GitHub-brightgreen.svg)][Repository]
 [![Latest version](https://img.shields.io/crates/v/byte-strings.svg)][crates.io]
@@ -9,39 +9,41 @@ Rust byte strings manipulation, for a better and safer C FFI
 
 ## Example
 
-Featuring the `c_str!` macro to create **valid C string literals** with no
+Featuring the `c_str!` macro to create **valid C string literals** with literally no
 runtime cost!
 
 ```rust
-mod puts {
+/// Some lib
+mod safe {
     use ::std::{
         ffi::CStr,
         os::raw::{c_char, c_int},
     };
 
-    /// C FFI
-    extern "C" { fn puts (message: *const c_char) -> c_int; }
+    /// private unsafe C FFI
+    mod ffi { use super::*; extern "C" {
+        pub fn puts (_: *const c_char) -> c_int;
+    }}
 
-    /// Safe wrapper around C FFI
-    pub fn safe (message: &'_ CStr) -> i32
+    /// lib API: safe Rust wrapper => uses `CStr`
+    pub fn puts (message: &'_ CStr) -> i32
     {
         unsafe {
-            puts(message.as_ptr()) as i32
+            ffi::puts(message.as_ptr()) as i32
         }
     }
 }
-use self::puts::safe as safe_puts;
 
 fn main ()
 {
     use ::byte_strings::c_str;
 
-    safe_puts(
-        c_str!( // Simple and safe!
+    dbg!(safe::puts(
+        c_str!(
             "Hello, ",
             "World!",
-        ) // No runtime error nor runtime cost!
-    );
+        ) // No runtime error, no runtime cost
+    ));
 }
 ```
 

@@ -1,30 +1,32 @@
-fn main ()
-{
-    use ::byte_strings::c_str;
-
-    dbg!(safe_puts(
-        c_str!(
-            "Hello, ",
-            "World!",
-        ) // No runtime error, no runtime cost
-    ));
-}
-
-use self::puts::safe_puts;
-mod puts {
+/// Some lib
+mod safe {
     use ::std::{
         ffi::CStr,
         os::raw::{c_char, c_int},
     };
 
-    /// C FFI
-    extern "C" { fn puts (message: *const c_char) -> c_int; }
+    /// private unsafe C FFI
+    mod ffi { use super::*; extern "C" {
+        pub fn puts (_: *const c_char) -> c_int;
+    }}
 
-    /// Safe wrapper around C FFI
-    pub fn safe_puts (message: &'_ CStr) -> i32
+    /// lib API: safe Rust wrapper => uses `CStr`
+    pub fn puts (message: &'_ CStr) -> i32
     {
         unsafe {
-            puts(message.as_ptr()) as i32
+            ffi::puts(message.as_ptr()) as i32
         }
     }
+}
+
+fn main ()
+{
+    use ::byte_strings::c_str;
+
+    dbg!(safe::puts(
+        c_str!(
+            "Hello, ",
+            "World!",
+        ) // No runtime error, no runtime cost
+    ));
 }
