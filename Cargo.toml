@@ -1,33 +1,39 @@
+# Templated by `cargo-generate` using https://github.com/danielhenrymantilla/proc-macro-template
 [package]
 name = "byte-strings"
-version = "0.1.3"
-authors = ["Daniel Henry-Mantilla <daniel.henry.mantilla@gmail.com>"]
+authors = [
+    "Daniel Henry-Mantilla <daniel.henry.mantilla@gmail.com>",
+]
+version = "0.2.0-rc1"  # Keep in sync
 edition = "2018"
 
-description = "Rust byte strings manipulation, for a better and safer C FFI"
-
-documentation = "https://docs.rs/byte_strings/"
-homepage = "https://github.com/danielhenrymantilla/byte-strings-rs"
+license = "Zlib OR MIT OR Apache-2.0"
 repository = "https://github.com/danielhenrymantilla/byte-strings-rs"
-
-license = "MIT"
-
+documentation = "https://docs.rs/byte-strings"
 readme = "README.md"
 
-
+description = "Rust byte strings manipulation, for a better and safer C FFI"
 keywords = ["ffi", "c", "string", "char", "c_str"]
 
-categories = ["api-bindings", "rust-patterns", ]
-
-[dependencies]
-byte-strings-proc-macro = "0.1.1"
-cfg-if = "0.1.6"
+categories = ["api-bindings", "rust-patterns"]
 
 [features]
-default = []
+better-docs = []  # allowed to break MSRV
+ui-tests = ["better-docs", "const-friendly"]
+const-friendly = []  # allowed to break MSRV
 
-nightly = []
-proc-macro-hygiene = ["byte-strings-proc-macro/proc-macro-hygiene"]
+[dependencies]
+
+[dependencies.byte-strings-proc_macros]
+path = "src/proc_macros"
+version = "0.2.0-rc1"  # Keep in sync
+
+[dev-dependencies]
+
+[workspace]
+members = [
+    "src/proc_macros",
+]
 
 [package.metadata.docs.rs]
-features = [ "nightly" ]
+all-features = true
