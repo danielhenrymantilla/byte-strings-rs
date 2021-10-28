@@ -175,6 +175,7 @@ macro_rules! const_concat {(
 #[doc(inline)] pub use const_concat as concat;
 
 /// `const`-constructible equivalent of [`::std::ffi::CStr`].
+#[repr(transparent)]
 pub struct CStr([u8]);
 
 impl CStr {

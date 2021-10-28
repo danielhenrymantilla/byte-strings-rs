@@ -4,14 +4,14 @@ version = 3
 
 [[package]]
 name = "byte-strings"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "byte-strings-proc_macros",
 ]
 
 [[package]]
 name = "byte-strings-proc_macros"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "proc-macro2",
  "quote",
