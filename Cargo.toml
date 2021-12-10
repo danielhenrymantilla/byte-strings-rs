@@ -4,7 +4,7 @@ name = "byte-strings"
 authors = [
     "Daniel Henry-Mantilla <daniel.henry.mantilla@gmail.com>",
 ]
-version = "0.2.1"  # Keep in sync
+version = "0.2.2"  # Keep in sync
 edition = "2018"
 
 license = "Zlib OR MIT OR Apache-2.0"
@@ -26,7 +26,7 @@ const-friendly = []  # allowed to break MSRV
 
 [dependencies.byte-strings-proc_macros]
 path = "src/proc_macros"
-version = "0.2.1"  # Keep in sync
+version = "0.2.2"  # Keep in sync
 
 [dev-dependencies]
 

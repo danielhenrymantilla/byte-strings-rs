@@ -11,7 +11,7 @@ summary {
 </style>
 <meta name=\"")]
 
-pub use concat_bytes as as_bytes;
+pub use crate::concat_bytes as as_bytes;
 
 /// Concatenates (byte) string literals into a single byte string literal.
 ///
