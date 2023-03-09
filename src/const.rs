@@ -1,4 +1,4 @@
-/*! `const`-friendly equivalents of the top-level crates.
+/*! `const`-friendly equivalents of the top-level crates. This requires the `const-friendly` crate feature to be enabled.
 
 <details><summary><code>const</code>-friendly?</summary>
 

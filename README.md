@@ -61,3 +61,9 @@ fn main ()
     safe::puts(c!("Hello, World!"));
 }
 ```
+
+## Crate featurse
+
+- `better-docs` provides more detailed documentation, but requires at least Rust 1.54.
+- `const-friendly` enables "`const`-friendly" version of the macros (see the `const_` module). It requires at least Rust 1.56.
+- `ui-tests` enables both previous features.
