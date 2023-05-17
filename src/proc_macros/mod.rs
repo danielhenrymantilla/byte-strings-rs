@@ -109,15 +109,13 @@ fn c_str_impl (
     let byte_string_literal = LitByteStr::new(bytes, Span::call_site());
     Ok(quote!(
         {
-            let stmt_expr_attr_workaround;
             #[allow(unused_unsafe)] {
-                stmt_expr_attr_workaround = unsafe {
-                    #crate_::__::std::ffi::CStr::from_bytes_with_nul_unchecked(
+                unsafe {
+                    #crate_::__::core::ffi::CStr::from_bytes_with_nul_unchecked(
                         #byte_string_literal
                     )
-                };
+                }
             }
-            stmt_expr_attr_workaround
         }
     ))
 }

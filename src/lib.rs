@@ -1,6 +1,6 @@
-#![cfg_attr(feature = "better-docs",
-    cfg_attr(all(), doc = include_str!("../README.md")),
-)]
+#![doc = include_str!("../README.md")]
+#![no_std]
+
 // Fix rendering of `<details><summary>` within bulleted lists:
 // Credit for this marvelous hack go to: https://github.com/rust-lang/cargo/issues/331#issuecomment-479847157
 #![doc(html_favicon_url = "\">
@@ -55,7 +55,7 @@ macro_rules! concat_bytes {(
 /// made of all the bytes of the given literals concatenated left-to-right,
 /// **with an appended null byte terminator**.
 ///
-/// Hence the macro evaluates to the type `&'static ::std::ffi::CStr`.
+/// Hence the macro evaluates to the type `&'static ::core::ffi::CStr`.
 ///
 /// # Example
 ///
@@ -117,11 +117,9 @@ mod __ {
     pub use {
         ::byte_strings_proc_macros::*,
         ::core,
-        ::std,
     };
 }
 
-#[cfg(feature = "const-friendly")]
 #[path = "const.rs"]
 pub mod const_;
 

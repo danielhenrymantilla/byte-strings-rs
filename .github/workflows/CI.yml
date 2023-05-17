@@ -9,12 +9,12 @@ on:
 jobs:
   # == CHECK == #
   check:
-    name: "Check beta stable and MSRV=1.45.0"
+    name: "Check beta stable and MSRV=1.65.0"
     runs-on: ubuntu-latest
     strategy:
       matrix:
         rust-toolchains:
-          - 1.45.0
+          - 1.65.0
           - stable
           - beta
         cargo-locked: ["--locked", ""]
@@ -28,14 +28,6 @@ jobs:
 
       - name: Clone repo
         uses: actions/checkout@v2
-
-      # See https://github.com/rust-lang/cargo/issues/10303
-      - name: cargo fetch (≤1.45.0 compatible)
-        uses: actions-rs/cargo@v1
-        env:
-          CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
-        with:
-          command: fetch
 
       - name: Update `Cargo.lock`
         if: matrix.cargo-locked != '--locked'
@@ -60,7 +52,7 @@ jobs:
           - macos-latest
           - windows-latest
         rust-toolchains:
-          - 1.45.0
+          - 1.65.0
           - stable
     steps:
       - name: Install Rust toolchain
@@ -72,14 +64,6 @@ jobs:
 
       - name: Clone repo
         uses: actions/checkout@v2
-
-      # See https://github.com/rust-lang/cargo/issues/10303
-      - name: cargo fetch (≤1.45.0 compatible)
-        uses: actions-rs/cargo@v1
-        env:
-          CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
-        with:
-          command: fetch
 
       - name: Cargo test
         uses: actions-rs/cargo@v1
@@ -108,14 +92,6 @@ jobs:
 
       - name: Clone repo
         uses: actions/checkout@v2
-
-      # See https://github.com/rust-lang/cargo/issues/10303
-      - name: cargo fetch (≤1.45.0 compatible)
-        uses: actions-rs/cargo@v1
-        env:
-          CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
-        with:
-          command: fetch
 
       - name: Cargo UI test
         uses: actions-rs/cargo@v1
