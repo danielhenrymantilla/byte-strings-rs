@@ -51,7 +51,8 @@ the macros in this module to be able to support any kind of `const`-evaluatable
 (byte) string:
 
 ```rust
-use ::byte_strings::const_::{c_str, CStr};
+use ::byte_strings::const_::c_str;
+use ::core::ffi::CStr;
 
 const MESSAGE: &str = "Hello, World!";
 const C_MESSAGE: &CStr = c_str!(MESSAGE); // OK!
@@ -174,58 +175,25 @@ macro_rules! const_concat {(
 )}
 #[doc(inline)] pub use const_concat as concat;
 
-/// `const`-constructible equivalent of [`::std::ffi::CStr`].
-#[repr(transparent)]
-pub struct CStr([u8]);
-
-impl CStr {
-    /// # Safety
-    ///
-    /// Same requirements as [`CStr::from_bytes_with_nul_unchecked()`][1]
-    ///
-    /// [1]: `::std::ffi::CStr::from_bytes_with_nul_unchecked`
-    pub
-    const
-    unsafe
-    fn from_bytes_with_nul_unchecked (bytes: &'_ [u8])
-      -> &'_ CStr
-    {
-        // Safety: `#[repr(transparent)]` ensures same layout.
-        ::core::mem::transmute(bytes)
-    }
-}
-
-impl ::core::ops::Deref for CStr {
-    type Target = ::std::ffi::CStr;
-
-    #[inline]
-    fn deref (self: &'_ CStr)
-      -> &'_ ::std::ffi::CStr
-    {
-        unsafe {
-            // Safety:
-            ::std::ffi::CStr::from_bytes_with_nul_unchecked(&self.0)
-        }
-    }
-}
-
 /// [`const`-friendly][crate::const_] version of
 /// [`c_str!`][crate::c_str].
 ///
 /// ```rust
 /// use ::byte_strings::const_;
+/// use ::core::ffi::CStr;
 ///
 /// const MESSAGE: &str = "Hello, World!";
-/// const C_MESSAGE: &const_::CStr = const_::c_str!(MESSAGE);
+/// const C_MESSAGE: &CStr = const_::c_str!(MESSAGE);
 /// ```
 ///
 /// Inner null bytes are still rejected at compile time:
 ///
 /// ```rust ,compile_fail
 /// use ::byte_strings::const_;
+/// use ::core::ffi::CStr;
 ///
 /// const MESSAGE: &str = "Hell\0, World!";
-/// const C_MESSAGE: &const_::CStr = const_::c_str!(MESSAGE); // Error.
+/// const C_MESSAGE: &CStr = const_::c_str!(MESSAGE); // Error.
 /// ```
 #[macro_export]
 macro_rules! const_cstr {() => ( $crate::cstr!() ); (
@@ -241,7 +209,7 @@ macro_rules! const_cstr {() => ( $crate::cstr!() ); (
         $crate::const_::__::c_strlen(BYTES)
     }> {};
     unsafe {
-        $crate::const_::CStr::from_bytes_with_nul_unchecked(
+        $crate::__::core::ffi::CStr::from_bytes_with_nul_unchecked(
             // Append a null terminator if needed.
             if BYTES[BYTES.len() - 1] == b'\0' {
                 BYTES

@@ -8,7 +8,7 @@ https://github.com/danielhenrymantilla/byte-strings-rs)
 https://crates.io/crates/byte-strings)
 [![Documentation](https://docs.rs/byte-strings/badge.svg)](
 https://docs.rs/byte-strings)
-[![MSRV](https://img.shields.io/badge/MSRV-1.45.0-white)](
+[![MSRV](https://img.shields.io/badge/MSRV-1.65.0-white)](
 https://gist.github.com/danielhenrymantilla/8e5b721b3929084562f8f65668920c33)
 [![License](https://img.shields.io/crates/l/byte-strings.svg)](
 https://github.com/danielhenrymantilla/byte-strings-rs/blob/master/LICENSE-ZLIB)
