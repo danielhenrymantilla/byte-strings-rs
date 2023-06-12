@@ -259,21 +259,16 @@ macro_rules! __concat_bytes_two {(
     $right:expr $(,)?
 ) => ({
     const LEFT: &'static [$crate::__::core::primitive::u8] = $left;
-    const __RIGHT: &'static [$crate::__::core::primitive::u8] = {
-        mod __ {
-            pub const RIGHT: &[$crate::__::core::primitive::u8] = $right;
-        }
-        __::RIGHT
-    };
+    const RIGHT: &'static [$crate::__::core::primitive::u8] = $right;
     unsafe {
         use $crate::const_::__::{Contiguous, core::{self, primitive::*, mem}};
         const LEFT_LEN: usize = LEFT.len();
         const LEFT_BYTES: &'static [u8; LEFT_LEN] = unsafe {
             mem::transmute(LEFT.as_ptr())
         };
-        const RIGHT_LEN: usize = __RIGHT.len();
+        const RIGHT_LEN: usize = RIGHT.len();
         const RIGHT_BYTES: &'static [u8; RIGHT_LEN] = unsafe {
-            mem::transmute(__RIGHT.as_ptr())
+            mem::transmute(RIGHT.as_ptr())
         };
         const CONCAT_CONTIGUOUS: (
             &'static Contiguous<
